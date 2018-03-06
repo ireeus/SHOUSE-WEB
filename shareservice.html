@@ -1,0 +1,37 @@
+<script type="text/javascript">
+$.getJSON("ShareService.php", function(result){
+var dps= [];
+
+//Insert Array Assignment function here
+for(var i=0; i<result.length;i++) {
+    dps.push({"label":result[i].ts, "y":result[i].d1});
+}
+
+//Insert Chart-making function here
+var chart = new CanvasJS.Chart("chartContainer", {
+    zoomEnabled:true,
+    panEnabled:true,
+    animationEnabled:false,
+    title:{
+        text: ""
+    },
+
+    axisX:{
+        title: "Time"
+    },
+
+        axisY:{
+        title: "Temp °C",
+        minimum: -10
+    },
+
+    data: [{
+        type: "line",
+        dataPoints:
+            dps
+              }]
+});
+chart.render();
+
+});
+</script>
